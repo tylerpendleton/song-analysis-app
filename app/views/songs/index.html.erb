@@ -1,0 +1,37 @@
+<h1>Index Page</h1>
+<div class="col-10 ml-auto mr-auto">
+  <% @songs.each_with_index do |s, i| %>
+    <% if i == 0 || i.even? %>
+      <div class="card-deck">
+      <% end %>
+      <div class='card text-center bg-white'>
+	<div class="card-header">
+	  <ul class="nav nav-fill nav-tabs card-header-tabs" id="<%= s.id %>Tabs" role="tablist">
+	    <li class="nav-item">
+	      <a class="nav-link active" id="<%= s.id %>ListenTab" data-toggle="tab" href="#<%= s.id %>Listen"><%= s.title %></a>
+	    </li>
+	    <li class="nav-info">
+	      <a class="nav-link" id="<%= s.id %>InfoTab" data-toggle="tab" href="#<%= s.id %>Info">Info</a>
+	    </li>
+	  </ul>
+	</div>
+	<div class="tab-content" id="<%= s.id %>TabContent">
+	  <div id="<%= s.id %>Listen" class='card-body text-left tab-pane fade active' role="tabpanel">
+	    <div class="ml-auto mr-auto">
+	    </div>
+	  </div>
+	  <div id="<%= s.id %>Info" class='card-body text-left tab-pane fade' role="tabpanel">
+	    <div class="ml-auto mr-auto">
+	      <p class='card-text'>Length: <%= s.length_to_time %></p>
+	      <p class='card-text'>Tempo: <%= s.tempo %></p>
+	      <p class='card-text'>Key: <%= s.key %></p>
+	      <small class="text-muted">Created <%= s.time_since_created %>.</small>
+	    </div>
+	  </div>
+	</div>
+      </div>
+      <% if i.odd? %>
+	</div>
+      <% end %>
+    <% end %>
+</div>
