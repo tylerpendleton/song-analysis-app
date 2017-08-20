@@ -1,5 +1,8 @@
 <h1>Index Page</h1>
 <div class="col-10 ml-auto mr-auto">
+  <% if @user_auth != nil %>
+    <%= p @user_auth.expired? %>
+  <% end %>
   <% @songs.each_with_index do |s, i| %>
     <% if i == 0 || i.even? %>
       <div class="card-deck">

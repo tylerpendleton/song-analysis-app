@@ -1,6 +1,12 @@
 class SongsController < ApplicationController
+  require 'rest-client'
+
   def index
     @songs = Song.all
+    @spotify = spotify_access(:authorize)[:url]
+    if UserAuth.current != nil
+      @user_auth = UserAuth.current
+    end
   end
 
   def show
@@ -30,4 +36,5 @@ class SongsController < ApplicationController
   def render_not_found(status=:not_found)
     render plain: "#{status.to_s.titleize}", status: status
   end
+
 end

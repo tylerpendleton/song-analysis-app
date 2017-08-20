@@ -1,8 +1,5 @@
 <h1>Lets create a song!</h1>
 <%= simple_form_for @song do |f| %>
   <%= f.input :title %>
-  <%= f.input :tempo %>
-  <%= f.input :key %>
-  <%= f.input :length %>
   <%= f.submit 'Create Song' %>
 <% end %>

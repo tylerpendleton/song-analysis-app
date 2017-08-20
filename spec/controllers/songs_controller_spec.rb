@@ -1,12 +1,21 @@
 require 'rails_helper'
 
 RSpec.describe SongsController, type: :controller do
+  controller do
+
+  end
   describe "songs#index action" do
     it "should load successfully" do
       get :index
       expect(response).to have_http_status(:success)
     end
+    
+    it "should expect @spotify to be the spotify_auth url" do
+      get :index
+      assert_equal assigns(:spotify), "https://accounts.spotify.com/authorize?client_id=30ae99fef9404798aa72edd17be545b9&response_type=code&redirect_uri=http%3A%2F%2Fsong.dev%2Fuser_auth"
+    end
   end
+
 
   describe "songs#new action" do
     it "should load successfully" do
