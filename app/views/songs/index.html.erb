@@ -1,8 +1,6 @@
-<h1>Index Page</h1>
 <div class="col-10 ml-auto mr-auto">
-  <% if @user_auth != nil %>
-    <%= p @user_auth.expired? %>
-  <% end %>
+  <h1 class="text-center">Songs</h1>
+  <hr />
   <% @songs.each_with_index do |s, i| %>
     <% if i == 0 || i.even? %>
       <div class="card-deck">
@@ -19,18 +17,22 @@
 	  </ul>
 	</div>
 	<div class="tab-content" id="<%= s.id %>TabContent">
-	  <div id="<%= s.id %>Listen" class='card-body text-left tab-pane fade active' role="tabpanel">
-	    <div class="ml-auto mr-auto">
+	  <div id="<%= s.id %>Listen" class='card-body text-left tab-pane active' role="tabpanel">
+	    <div class="ml-auto mr-auto text-center">
+		<iframe src="https://open.spotify.com/embed?uri=<%= s.uri %>" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
 	    </div>
 	  </div>
 	  <div id="<%= s.id %>Info" class='card-body text-left tab-pane fade' role="tabpanel">
 	    <div class="ml-auto mr-auto">
-	      <p class='card-text'>Length: <%= s.length_to_time %></p>
+	      <p class='card-text'>Length: <%= duration(s.duration_ms) %></p>
 	      <p class='card-text'>Tempo: <%= s.tempo %></p>
 	      <p class='card-text'>Key: <%= s.key %></p>
 	      <small class="text-muted">Created <%= s.time_since_created %>.</small>
 	    </div>
 	  </div>
+	</div>
+	<div class="card-footer">
+	  <%= link_to 'View Song', song_path(s), class: 'btn btn-primary' %>
 	</div>
       </div>
       <% if i.odd? %>

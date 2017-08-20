@@ -1,0 +1,5 @@
+<h1>Search for a song</h1>
+<%= form_tag search_results_songs_path do %>
+  <%= search_field_tag 'query', 'White River Junction' %>
+  <%= button_tag 'Search', class: 'btn btn-primary' %>
+<% end %>
