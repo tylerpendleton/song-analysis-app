@@ -8,4 +8,6 @@ Rails.application.routes.draw do
     end
   end
   resources :user_auth, only: [:index]
+  resources :artists, only: [:index, :show]
+  resources :song_sections, only: [:create, :update]
 end

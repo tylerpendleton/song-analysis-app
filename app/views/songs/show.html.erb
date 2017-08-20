@@ -2,3 +2,21 @@
 <h5><%= @song.duration_ms %></h5>
 <h5><%= @song.tempo %></h5>
 <h5><%= @song.key %></h5>
+<hr/>
+<h4>
+  <% if @song.song_sections.count > 0 %>
+  <% @song.song_sections.each do |section| %>
+    <%= section.section %>
+    <%= section.lyrics %>
+    <%= section.instrumentation %>
+  <% end %>
+<% end %>
+</h4>
+
+<%= simple_form_for @song_section do |f| %>
+  <%= f.input :section, collection: SongSection::SECTIONS, prompt: "Select Section Type" %>
+  <%= f.input :lyrics %>
+  <%= f.input :instrumentation, placeholder: 'guitar, saxophone, drums' %>
+  <%= f.input :song_structure_id, as: :hidden, input_html: { value: @song.id } %>
+  <%= f.submit 'Create Section' %>
+<% end %>

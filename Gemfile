@@ -6,6 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 
+gem 'nokogiri'
 gem 'omniauth-spotify'
 gem 'figaro'
 gem 'rest-client'

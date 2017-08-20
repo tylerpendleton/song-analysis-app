@@ -8,7 +8,12 @@ class UserAuth < ApplicationRecord
   end
 
   def expired?
-    Time.now.getutc - self.created_at.getutc > 3600
+    if Time.now.getutc - self.created_at.getutc > 3600
+      @current_user_auth = nil
+      true
+    else
+      false
+    end
   end
 
   def self.renew

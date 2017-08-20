@@ -1,4 +1,13 @@
 FactoryGirl.define do
+  factory :song_structure do
+    
+  end
+  factory :song_section do
+    
+  end
+  factory :artist do
+    
+  end
   factory :user_auth do
     
   end

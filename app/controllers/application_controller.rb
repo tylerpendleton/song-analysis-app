@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
 	spotify_response = json(response)
 	UserAuth.current = UserAuth.create!(access_token: spotify_response[:access_token], token_type: spotify_response[:token_type], token_scope: spotify_response[:scope], expires_in: spotify_response[:expires_in], refresh_token: spotify_response[:refresh_token])
       else
-	return
+	render json: response, status: response.code
       end
     }
   end
@@ -25,12 +25,14 @@ class ApplicationController < ActionController::Base
     query = param.split(' ').join('%20')
     call = {}
     spotify = {
-      spotify_authorize_url: "https://accounts.spotify.com/authorize" ,
-      spotify_authorize_post_url: "https://accounts.spotify.com/api/token",
-      spotify_api_profile: "https://api.spotify.com/v1/me",
+      authorize_url: "https://accounts.spotify.com/authorize" ,
+      authorize_post_url: "https://accounts.spotify.com/api/token",
+      api_profile: "https://api.spotify.com/v1/me",
       api_search: "https://api.spotify.com/v1/search?",
       api_get_track: "https://api.spotify.com/v1/tracks/#{param}",
       api_get_track_features: "https://api.spotify.com/v1/audio-features/#{param}",
+      api_get_artist: "https://api.spotify.com/v1/artists/#{param}",
+      api_get_album: "https://api.spotify.com/v1/albums/#{param}",
       api_search_type: "&type=track",
       api_search_query: "q=#{query}",
       response_type_code: "&response_type=code",
@@ -47,12 +49,12 @@ class ApplicationController < ActionController::Base
     case option
     when :authorize
       then
-      call = { url: [spotify[:spotify_authorize_url], spotify[:client_id], spotify[:response_type_code], spotify[:redirect_uri]].join('') }
+      call = { url: [spotify[:authorize_url], spotify[:client_id], spotify[:response_type_code], spotify[:redirect_uri]].join('') }
     when :get_token
-      then call = { url: spotify[:spotify_authorize_post_url], body: { client_id: ENV['spotify_client_id'], client_secret: ENV['spotify_secret_key'], grant_type: 'authorization_code', code: param, redirect_uri: user_auth_index_url } }
+      then call = { url: spotify[:authorize_post_url], body: { client_id: ENV['spotify_client_id'], client_secret: ENV['spotify_secret_key'], grant_type: 'authorization_code', code: param, redirect_uri: user_auth_index_url } }
     when :get_profile
       then
-      call = { url: spotify[:spotify_api_profile] }
+      call = { url: spotify[:api_profile] }
     when :search_tracks
       then
       call = { url: spotify[:api_search] + spotify[:api_search_query] + spotify[:api_search_type], header: spotify[:token_header] }
@@ -62,6 +64,12 @@ class ApplicationController < ActionController::Base
     when :get_track_features
       then
       call = { url: spotify[:api_get_track_features], header: spotify[:token_header] }
+    when :get_artist
+      then
+      call = { url: spotify[:api_get_artist], header: spotify[:token_header] }
+    when :get_album
+      then
+      call = { url: spotify[:api_get_album], header: spotify[:token_header] }
     else
     end
   end

@@ -16,17 +16,21 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarText">
 	<ul class="navbar-nav mr-auto">
-	  <li class="nav-item active">
-	    <% if UserAuth.current == nil %>
-	      <%= link_to 'Login with Spotify', @spotify, class: "nav-link" %>
-	    <% end %>
-	  </li>
+	  <% if UserAuth.current == nil %>
+	    <li class="nav-item active">
+		<%= link_to 'Login with Spotify', @spotify, class: "nav-link" %>
+	    </li>
+	  <% end %>
 	  <li class="nav-item">
 	    <%= link_to "Create Song", search_songs_path, class: "nav-link" %>
 	  </li>
 	</ul>
 	<span class="navbar-text">
-	  You are not currently logged in
+	  <% if UserAuth.current != nil %>
+	    You are logged in. Token: <%= UserAuth.current.access_token.slice(0, 5) %>
+	  <% else %>
+	    You are not currently logged in
+	  <% end %>
 	</span>
       </div>
     </nav>

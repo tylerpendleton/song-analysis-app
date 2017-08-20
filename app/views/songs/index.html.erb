@@ -24,6 +24,7 @@
 	  </div>
 	  <div id="<%= s.id %>Info" class='card-body text-left tab-pane fade' role="tabpanel">
 	    <div class="ml-auto mr-auto">
+	      <p class='card-text'>Artist: <%= link_to s.artist.name, artist_path(s.artist) %>
 	      <p class='card-text'>Length: <%= duration(s.duration_ms) %></p>
 	      <p class='card-text'>Tempo: <%= s.tempo %></p>
 	      <p class='card-text'>Key: <%= s.key %></p>
