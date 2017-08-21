@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170820205609) do
+ActiveRecord::Schema.define(version: 20170820195804) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,15 +30,15 @@ ActiveRecord::Schema.define(version: 20170820205609) do
     t.string   "section"
     t.text     "lyrics"
     t.string   "instrumentation",   default: [],              array: true
+    t.integer  "song_structure_id"
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
-    t.integer  "song_structure_id"
   end
 
   create_table "song_structures", force: :cascade do |t|
+    t.integer  "song_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "song_id"
   end
 
   create_table "songs", force: :cascade do |t|
@@ -46,16 +46,18 @@ ActiveRecord::Schema.define(version: 20170820205609) do
     t.float    "duration_ms"
     t.integer  "key"
     t.integer  "tempo"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-    t.integer  "spotify_id"
-    t.boolean  "explicit"
-    t.string   "uri"
     t.integer  "time_signature"
+    t.integer  "integer"
+    t.boolean  "explicit"
     t.string   "copyright_text"
     t.string   "copyright_type"
     t.string   "label",          default: [],              array: true
+    t.string   "uri"
+    t.string   "string"
+    t.integer  "spotify_id"
     t.integer  "artist_id"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   create_table "user_auths", force: :cascade do |t|
