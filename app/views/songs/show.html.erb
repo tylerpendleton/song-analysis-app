@@ -4,7 +4,7 @@
 <h5><%= @song.key %></h5>
 <hr/>
 <h4>
-  <% if @song.song_sections.count > 0 %>
+  <% if @song.song_sections.first != nil %>
   <% @song.song_sections.each do |section| %>
     <%= section.section %>
     <%= section.lyrics %>
