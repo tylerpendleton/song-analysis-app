@@ -8,34 +8,28 @@
       <div class='col-12 col-md-10 col-lg-6 col-xl-4'>
 	<div class='card text-center bg-white'>
 	  <div class="card-header">
-	    <ul class="nav nav-fill nav-tabs card-header-tabs" id="<%= r[:id] %>Tabs" role="tablist">
+	    <ul class="nav nav-fill nav-tabs card-header-tabs" id="<%= r.id %>Tabs" role="tablist">
 	      <li class="nav-item">
-		<a class="nav-link active" id="<%= r[:id] %>ListenTab" data-toggle="tab" href="#<%= r[:id] %>Listen"><%= r[:name] %></a>
+		<a class="nav-link active" id="<%= r.id %>ListenTab" data-toggle="tab" href="#<%= r.id %>Listen"><%= r.name %></a>
 	      </li>
 	      <li class="nav-info">
-		<a class="nav-link" id="<%= r[:id] %>InfoTab" data-toggle="tab" href="#<%= r[:id] %>Info">Info</a>
+		<a class="nav-link" id="<%= r.id %>InfoTab" data-toggle="tab" href="#<%= r.id %>Info">Info</a>
 	      </li>
 	    </ul>
 	  </div>
-	  <div class="tab-content" id="<%= r[:id] %>TabContent">
-	    <div id="<%= r[:id] %>Listen" class='card-body text-left tab-pane active' role="tabpanel">
+	  <div class="tab-content" id="<%= r.id %>TabContent">
+	    <div id="<%= r.id %>Listen" class='card-body text-left tab-pane active' role="tabpanel">
 	      <div class="ml-auto mr-auto text-center">
-		<iframe src="https://open.spotify.com/embed?uri=<%= r[:uri] %>" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
+		<iframe src="https://open.spotify.com/embed?uri=<%= r.uri %>" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
 	      </div>
 	    </div>
-	    <div id="<%= r[:id] %>Info" class='card-body text-left tab-pane fade' role="tabpanel">
+	    <div id="<%= r.id %>Info" class='card-body text-left tab-pane fade' role="tabpanel">
 	      <div class="ml-auto mr-auto">
-		<p class='card-text'>Artist: <%= r[:artists][0][:name] %></p>
-		<p class='card-text'>Album: <%= r[:album][:name] %></p>
-		<p class='card-text'>Key: <%= duration(r[:duration_ms])%></p>
+		<p class='card-text'>Artist: <%= r.artists[0].name %></p>
+		<p class='card-text'>Album: <%= r.album.name %></p>
+		<p class='card-text'>Key: <%= duration(r.duration_ms)%></p>
 	      </div>
 	    </div>
-	  </div>
-	  <div class="card-footer">
-	    <%= form_tag songs_path do %>
-	      <%= hidden_field_tag 'spotify_id', r[:id] %>
-	      <%= button_tag 'Create Song', class: 'btn btn-primary' %>
-	    <% end %>
 	  </div>
 	</div>
       </div>

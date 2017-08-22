@@ -1,5 +1,9 @@
 module Spotify
 
+  class SpotifyClient
+    def authorize
+    end
+  end
   def form_uri(task, arr=[])
     access_point = {
       authorize: "https://accounts.spotify.com/authorize",

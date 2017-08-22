@@ -1,6 +1,10 @@
 require 'rails_helper'
+include Spotify
 
 RSpec.describe SongsController, type: :controller do
+  before :all do
+
+  end
   controller do
 
   end

@@ -15,22 +15,8 @@
 	<span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarText">
-	<ul class="navbar-nav mr-auto">
-	  <% if UserAuth.current == nil %>
-	    <li class="nav-item active">
-		<%= link_to 'Login with Spotify', @spotify, class: "nav-link" %>
-	    </li>
-	  <% end %>
-	  <li class="nav-item">
-	    <%= link_to "Create Song", search_songs_path, class: "nav-link" %>
-	  </li>
-	</ul>
-	<span class="navbar-text">
-	  <% if UserAuth.current != nil %>
-	    You are logged in. Token: <%= UserAuth.current.access_token.slice(0, 5) %>
-	  <% else %>
-	    You are not currently logged in
-	  <% end %>
+	<span class="navbar-text mr-auto">
+	  Find information about any song!
 	</span>
       </div>
     </nav>

@@ -1,5 +1,6 @@
 class Song < ApplicationRecord
   include SongsHelper
+  scope :recent, -> { all.sort { |x, y| y.created_at <=> x.created_at } }
   validates :title, presence: true, length: { minimum: 3 }
 
   belongs_to :artist

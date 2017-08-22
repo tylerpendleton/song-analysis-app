@@ -1,7 +1,18 @@
 <div class="col-10 ml-auto mr-auto">
-  <h1 class="text-center">Songs</h1>
-  <hr />
+  <div class="ml-auto mr-auto">
+    <%= form_tag search_results_songs_path do %>
+      <%= search_field_tag 'query' %>
+      <%= button_tag 'Search', class: 'btn btn-primary' %>
+    <% end %>
+  </div>
   <% @songs.each_with_index do |s, i| %>
+    <h5><%= s.name %></h1>
+    <h5><%= duration(s.duration_ms) %></h1>
+    <h5><%= s.album.name %></h1>
+    <h5><%= s.artists[0].name %></h1>
+    <hr />
+    
+    <% if s == "zombie" %>
     <% if i == 0 || i.even? %>
       <div class="card-deck">
       <% end %>
@@ -38,6 +49,8 @@
       </div>
       <% if i.odd? %>
 	</div>
+      <% end %>
+      
       <% end %>
     <% end %>
 </div>

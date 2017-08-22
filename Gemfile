@@ -5,9 +5,10 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-
 gem 'nokogiri'
 gem 'omniauth-spotify'
+gem 'omniauth'
+gem 'rspotify'
 gem 'figaro'
 gem 'rest-client'
 gem 'rails-controller-testing'
