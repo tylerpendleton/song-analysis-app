@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/tylerpendleton/rspotify.git
-  revision: 433562249e3cb9e49310a357ad67aeedcdf82a18
+  revision: 12291892ce4dacdeda0000f25dc15601631c35ad
   branch: play-track-from-browser
   specs:
     rspotify (1.22.1)

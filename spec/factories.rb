@@ -6,15 +6,17 @@ FactoryGirl.define do
     
   end
   factory :artist do
-    
+    name "The Black Keys"
+    genres ['Rock']
   end
   factory :user_auth do
     
   end
   factory :song do
     title "Song Title"
+    artist "The Black Keys"
     key 5
     tempo 112
-    length 2.54
+    duration_ms 2.54
   end
 end
