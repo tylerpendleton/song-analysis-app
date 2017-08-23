@@ -8,7 +8,7 @@ end
 gem 'nokogiri'
 gem 'omniauth-spotify'
 gem 'omniauth'
-gem 'rspotify'
+gem 'rspotify', :git => 'git://github.com/tylerpendleton/rspotify.git', :branch => 'play-track-from-browser'
 gem 'figaro'
 gem 'rest-client'
 gem 'rails-controller-testing'

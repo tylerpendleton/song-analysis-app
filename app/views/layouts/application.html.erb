@@ -18,6 +18,14 @@
 	<span class="navbar-text mr-auto">
 	  Find information about any song!
 	</span>
+	  <% if @spotify_user != nil %>
+	    <span class="navbar-text">
+	      Welcome <%= @spotify_user.email %>! <%= link_to 'Log Out', auth_spotify_sign_out_path %>
+	    </span>
+	  <% else %>
+	    <%= link_to 'Sign in with Spotify!', '/auth/spotify', class: 'navbar-link' %>
+	  <% end %>
+	</ul>
       </div>
     </nav>
     <%= yield %>
